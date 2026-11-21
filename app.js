@@ -1,5 +1,5 @@
 const groups=GENERIC_GROUPS;
-const master=GENERIC_ITEMS;
+let master=GENERIC_ITEMS;
 const key='mk-check-generic-v1';let state,view='check',group=0;const today=()=>new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Tokyo'});const fresh=()=>({date:today(),line:'01',product:'P-01',shift:'A',trigger:'毎勤務',operator:'',leader:'',note:'',values:{},confirmed:{},status:'draft'});try{state=JSON.parse(localStorage.getItem(key))||fresh()}catch{state=fresh()}let records;try{records=JSON.parse(localStorage.getItem(key+'-records'))||[]}catch{records=[]}let storageOK=true;
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function persist(){try{localStorage.setItem(key,JSON.stringify(state));storageOK=true}catch{storageOK=false;toast('端末に保存できません。Excelを出力してください。')} }
